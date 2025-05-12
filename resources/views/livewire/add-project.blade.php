@@ -2,56 +2,71 @@
     <form wire:submit.prevent="import" class="space-y-6">
         {{-- Flash Messages --}}
         @if (session()->has('success'))
-            <div class="text-sm text-green-700 bg-green-100 border border-green-300 rounded p-3">
+            <div class="alert alert-success text-sm">
                 {{ session('success') }}
             </div>
         @endif
 
         @if (session()->has('error'))
-            <div class="text-sm text-red-700 bg-red-100 border border-red-300 rounded p-3">
+            <div class="alert alert-error text-sm">
                 {{ session('error') }}
             </div>
         @endif
 
         {{-- Project Name --}}
-        <div>
-            <label for="project_name" class="block text-sm font-semibold mb-1">Project Name</label>
-            <input type="text" wire:model="project_name" id="project_name" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="form-control">
+            <label for="project_name" class="label">
+                <span class="label-text">{{ __('Project Name') }}</span>
+            </label>
+            <input type="text" wire:model="project_name" id="project_name"
+                   class="input input-bordered w-full" />
             @error('project_name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
         {{-- Project Description --}}
-        <div>
-            <label for="project_description" class="block text-sm font-semibold mb-1">Project Description</label>
-            <textarea wire:model="project_description" id="project_description" class="w-full p-2 border rounded-md resize-none h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        <div class="form-control">
+            <label for="project_description" class="label">
+                <span class="label-text">{{ __('Project Description') }}</span>
+            </label>
+            <textarea wire:model="project_description" id="project_description"
+                      class="textarea textarea-bordered w-full h-24 resize-none"></textarea>
             @error('project_description') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
         {{-- Points per Word --}}
-        <div>
-            <label for="points_per_word" class="block text-sm font-semibold mb-1">Points per Word</label>
-            <input type="number" wire:model="points_per_word" id="points_per_word" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="form-control">
+            <label for="points_per_word" class="label">
+                <span class="label-text">{{ __('Points per Word') }}</span>
+            </label>
+            <input type="number" wire:model="points_per_word" id="points_per_word"
+                   class="input input-bordered w-full" />
             @error('points_per_word') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
         {{-- Verifications per Word --}}
-        <div>
-            <label for="verifications_per_word" class="block text-sm font-semibold mb-1">Verifications per Word</label>
-            <input type="number" wire:model="verifications_per_word" id="verifications_per_word" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="form-control">
+            <label for="verifications_per_word" class="label">
+                <span class="label-text">{{ __('Verifications per Word') }}</span>
+            </label>
+            <input type="number" wire:model="verifications_per_word" id="verifications_per_word"
+                   class="input input-bordered w-full" />
             @error('verifications_per_word') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
         {{-- Upload ZIP --}}
-        <div>
-            <label for="zip_file" class="block text-sm font-semibold mb-1">Upload ZIP File</label>
-            <input type="file" wire:model="zip_file" id="zip_file" accept=".zip" class="w-full text-sm">
+        <div class="form-control">
+            <label for="zip_file" class="label">
+                <span class="label-text">{{ __('Upload ZIP File') }}</span>
+            </label>
+            <input type="file" wire:model="zip_file" id="zip_file" accept=".zip"
+                   class="file-input file-input-bordered w-full" />
             @error('zip_file') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
         {{-- Submit Button --}}
         <div class="pt-4">
-            <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out">
-                Import Translations
+            <button type="submit" class="btn btn-primary w-full">
+                {{ __('Import Translations') }}
             </button>
         </div>
     </form>
